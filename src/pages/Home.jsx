@@ -3,10 +3,58 @@ import Nav from '../components/Nav'
 import Footer from '../components/Footer'
 import ClientCarousel from '../components/ClientCarousel'
 import useScrollReveal from '../hooks/useScrollReveal'
+import useSEO from '../hooks/useSEO'
+
+const STRUCTURED_DATA = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'ProfessionalService',
+      '@id': 'https://processtopixels.studio/#business',
+      name: 'Process to Pixels',
+      url: 'https://processtopixels.studio',
+      description: 'Strategic product design studio offering UX research, product design, design systems, and service design.',
+      founder: { '@type': 'Person', name: 'Lisa Demchenko' },
+      areaServed: 'Worldwide',
+      knowsAbout: ['UX Research', 'Product Design', 'Design Systems', 'Service Design', 'AI-Powered Design'],
+      hasOfferCatalog: {
+        '@type': 'OfferCatalog',
+        name: 'Design Services',
+        itemListElement: [
+          { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'UX Research & Strategy', description: 'Deep user research and strategic planning to align business goals with user needs.', price: '2499', priceCurrency: 'USD' } },
+          { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Product Design', description: 'End-to-end product design from concept to high-fidelity prototypes.', price: '6499', priceCurrency: 'USD' } },
+          { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Design Partner', description: 'Ongoing UX consultation and design partnership.', price: '4499', priceCurrency: 'USD' } },
+        ],
+      },
+    },
+    {
+      '@type': 'Person',
+      '@id': 'https://processtopixels.studio/#lisa',
+      name: 'Lisa Demchenko',
+      jobTitle: 'Strategic Design Partner',
+      url: 'https://processtopixels.studio',
+      knowsAbout: ['UX Design', 'Product Design', 'Design Systems', 'User Research', 'SaaS', 'AI-Powered Apps', 'Healthcare Tech'],
+      hasCredential: { '@type': 'EducationalOccupationalCredential', description: '6+ years of UX design and strategy experience across 8+ industries' },
+    },
+    {
+      '@type': 'WebSite',
+      '@id': 'https://processtopixels.studio/#website',
+      url: 'https://processtopixels.studio',
+      name: 'Process to Pixels',
+      description: 'Strategic product design, pixel by pixel.',
+    },
+  ],
+}
 
 export default function Home() {
+  useSEO({
+    title: 'Lisa Demchenko — Strategic UX & Product Design Partner | Process to Pixels',
+    description: 'Strategic product design partner helping startups and businesses create products users love — through UX research, product design, and scalable design systems. 6+ years, 30+ products shipped.',
+    path: '/',
+    structuredData: STRUCTURED_DATA,
+  })
+
   useEffect(() => {
-    document.title = 'Process to Pixels — Strategic Design Partner'
     document.documentElement.style.setProperty('--nav-height', '94px')
   }, [])
 

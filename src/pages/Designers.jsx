@@ -3,6 +3,25 @@ import Nav from '../components/Nav'
 import Footer from '../components/Footer'
 import ClientCarousel from '../components/ClientCarousel'
 import useScrollReveal from '../hooks/useScrollReveal'
+import useSEO from '../hooks/useSEO'
+
+const STRUCTURED_DATA = {
+  '@context': 'https://schema.org',
+  '@type': 'CollectionPage',
+  '@id': 'https://processtopixels.studio/designers#page',
+  name: 'Free UX/UI Design Resources, Templates & Guides',
+  description: 'Free Figma templates, UX research question banks, AI design guides, and Notion resources for UX/UI designers and design teams.',
+  url: 'https://processtopixels.studio/designers',
+  author: { '@type': 'Person', name: 'Lisa Demchenko', url: 'https://processtopixels.studio' },
+  hasPart: [
+    { '@type': 'CreativeWork', name: 'The Complete Claude AI Guide for UX/UI Designers', url: 'https://pixelandprocess.gumroad.com/l/claudeguide', isAccessibleForFree: true },
+    { '@type': 'CreativeWork', name: 'UX/UI AI Library', url: 'https://pixelandprocess.gumroad.com/l/aipowereddesign' },
+    { '@type': 'CreativeWork', name: 'UX/UI Learning Resources', url: 'https://pixelandprocess.gumroad.com/l/uxuiresources', isAccessibleForFree: true },
+    { '@type': 'CreativeWork', name: 'User Research Question Bank', url: 'https://pixelandprocess.gumroad.com/l/uxrquestions', isAccessibleForFree: true },
+    { '@type': 'CreativeWork', name: 'UX Strategy Template', url: 'https://www.figma.com/community/file/1574775956496353641/ux-strategy-template', isAccessibleForFree: true },
+    { '@type': 'CreativeWork', name: 'Usability Testing Insights & Analysis Template', url: 'https://www.figma.com/community/file/1500967805449223311/usability-testing-insights-analysis-template', isAccessibleForFree: true },
+  ],
+}
 
 // Purple theme for designers page
 const RESOURCES = [
@@ -82,8 +101,14 @@ const CATEGORIES = [
 ]
 
 export default function Designers() {
+  useSEO({
+    title: 'Free UX/UI Design Resources, Templates & Guides | Process to Pixels',
+    description: 'Free Figma templates, UX research question banks, Claude AI guides, and Notion databases for UX/UI designers and design teams. Curated by Lisa Demchenko.',
+    path: '/designers',
+    structuredData: STRUCTURED_DATA,
+  })
+
   useEffect(() => {
-    document.title = 'Process to Pixels — For Designers'
     document.documentElement.style.setProperty('--nav-height', '52px')
   }, [])
 
